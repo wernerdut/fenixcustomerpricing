@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; color: #222; }
+    .logo { text-align: center; margin-bottom: 20px; }
+    .logo img { height: 150px; display: block; margin: 0 auto 20px; }
+    h1, h2 { text-align: center; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #444; padding: 10px; text-align: left; }
+    th { background-color: #f0f0f0; }
+    .note { font-style: italic; font-size: 11px; color: #666; margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <div class="logo"><img src="data:image/jpeg;base64,PASTE-YOUR-BASE64-HERE" alt="Fenix Rising Logo" /></div>
+  <h1>Fenix Rising - Client Pricelist</h1>
+  <h2>For: {{ client_name }}<br>Effective: {{ effective_date }}</h2>
+  <p>Email: {{ contact_email }}</p>
+  <p>Dear {{ contact_name }},</p>
+  <table>
+    <thead><tr><th>Product</th><th>Price (R/kg)</th></tr></thead>
+    <tbody>
+      {% for item in products %}
+      <tr>
+        <td>{{ item.name }}{% if item.note %}<div class="note">Note: {{ item.note }}</div>{% endif %}</td>
+        <td>{{ item.price }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p style="margin-top: 30px;">Pricing is based on deliveries of {{ delivery_volume }} tons.</p>
+  <p style="margin-top: 30px;">We appreciate your business, {{ contact_name }}, and we look forward to growing together.</p>
+  <p style="margin-top: 30px;">Werner du Toit | Fenix Rising</p>
+  <hr style="margin-top: 40px;">
+  <p style="font-size: 12px; color: #555; text-align: center; margin-top: 10px;">
+    4 FABRIEK STREET, BELLVILLE SOUTH, 7530 &nbsp;&nbsp;&nbsp; INFO@FENIXRISING.CO.ZA &nbsp;&nbsp;&nbsp; WWW.FENIXRISING.CO.ZA<br>
+    FENIX RISING (PTY) LTD &nbsp;&nbsp;&nbsp; REG NO: 2014/177963/07T &nbsp;&nbsp;&nbsp; VAT NO: 4290267378 &nbsp;&nbsp;&nbsp; DIRECTOR: W DU TOIT
+  </p>
+</body>
+</html>
