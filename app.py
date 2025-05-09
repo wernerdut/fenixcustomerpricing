@@ -13,7 +13,10 @@ st.sidebar.header("Step 1: Upload CSV File")
 uploaded_file = st.sidebar.file_uploader("Choose your pricelist CSV", type=["csv"])
 
 if uploaded_file:
-    df = pd.read_csv(uploaded_file)
+    df = pd.read_csv(uploaded_file, encoding="utf-8", engine="python")
+    df = df.dropna(axis=1, how='all')  # Remove entirely empty columns
+    df = df.dropna(how='all')          # Remove entirely empty rows
+
     st.success("CSV uploaded successfully!")
     st.subheader("📋 Uploaded Data Preview")
     st.dataframe(df)
@@ -35,7 +38,7 @@ if uploaded_file:
         html_content = template.render(
             client_name=client_name,
             contact_name=dataframe['Contact Name'].iloc[0],
-            contact_email=dataframe['Email'].iloc[0],
+            contact_email=dataframe['Contact Email'].iloc[0],
             delivery_volume=dataframe['Delivery Volume'].iloc[0],
             effective_date=dataframe['Effective Date'].iloc[0],
             products=products,
