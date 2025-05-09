@@ -31,7 +31,11 @@
       {% endfor %}
     </tbody>
   </table>
-  <p style="margin-top: 30px;">Pricing is based on deliveries of {{ delivery_volume }} tons.</p>
+ {% if delivery_volume %}
+  <p style="margin-top: 30px;">
+    Pricing is based on deliveries of {{ delivery_volume }} tons.
+  </p>
+{% endif %}
   <p style="margin-top: 30px;">We appreciate your business, {{ contact_name }}, and we look forward to growing together.</p>
   <p style="margin-top: 30px;">Werner du Toit | Fenix Rising</p>
   <hr style="margin-top: 40px;">
