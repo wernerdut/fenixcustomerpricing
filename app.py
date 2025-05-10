@@ -35,19 +35,19 @@ if uploaded_file:
 
         logo_path = os.path.abspath("fenix_logo.png")
 
-        html_content = template.render(
-            client_name=client_name,
-            contact_name=dataframe['Contact Name'].iloc[0],
-            contact_email=dataframe['Contact Email'].iloc[0],
-            delivery_volume_value = dataframe['Delivery Volume'].iloc[0]
+	delivery_volume_value = dataframe['Delivery Volume'].iloc[0]
 delivery_volume = "" if pd.isna(delivery_volume_value) or str(delivery_volume_value).lower() == "nan" else delivery_volume_value
-...
-delivery_volume=delivery_volume,
-            effective_date=dataframe['Effective Date'].iloc[0],
-            products=products,
-            date_today=datetime.today().strftime("%Y-%m-%d"),
-            logo_path=logo_path
-        )
+
+html_content = template.render(
+    client_name=client_name,
+    contact_name=dataframe['Contact Name'].iloc[0],
+    contact_email=dataframe['Contact Email'].iloc[0],
+    delivery_volume=delivery_volume,
+    effective_date=dataframe['Effective Date'].iloc[0],
+    products=products,
+    date_today=datetime.today().strftime("%Y-%m-%d"),
+    logo_path=logo_path
+)
 
         return html_content
 
