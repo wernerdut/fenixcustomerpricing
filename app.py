@@ -17,9 +17,22 @@ if uploaded_file:
     df = df.dropna(axis=1, how='all')  # Remove entirely empty columns
     df = df.dropna(how='all')          # Remove entirely empty rows
 
-    st.success("CSV uploaded successfully!")
+    st.sidebar.header("Optional: Adjust Pricing")
+    adjustment_value = st.sidebar.number_input("Adjust all prices by (R/kg)", value=0.00, step=0.10)
+
+    if adjustment_value != 0.00:
+        df["Price per kg"] = df["Price per kg"] + adjustment_value
+        st.success(f"Adjusted all prices by {adjustment_value} R/kg")
+
     st.subheader("📋 Uploaded Data Preview")
     st.dataframe(df)
+
+    st.download_button(
+        label="📥 Download Adjusted CSV",
+        data=df.to_csv(index=False),
+        file_name="adjusted_pricelist.csv",
+        mime="text/csv"
+    )
 
     def render_html(dataframe, client_name):
         env = Environment(loader=FileSystemLoader("."))
