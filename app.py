@@ -18,7 +18,7 @@ if uploaded_file:
     df = df.dropna(how='all')          # Remove entirely empty rows
 
     st.sidebar.header("Optional: Adjust Pricing")
-    adjustment_value = st.sidebar.number_input("Adjust all prices by (R/kg)", value=0.00, step=0.10)", value="0.00")", value=0.00, step=0.10)
+    adjustment_value = st.sidebar.number_input("Adjust all prices by (R/kg)", value=0.00, step=0.10)
 
     if adjustment_value != 0.00:
         df["Price per kg"] = df["Price per kg"] + adjustment_value
